@@ -62,7 +62,7 @@
   top: 15px;
   left: 15px;
   width: 70px;
-  height: 45px;
+  height: 65px;
   object-fit: contain;
   cursor: pointer;
   z-index: 20;
@@ -77,9 +77,9 @@
 .play-btn {
   position: absolute;
   bottom: 15px;
-  right: 15px;
-  width: 160px;
-  height: 60px;
+  left: 200px;
+  width: 190px;
+  height: 80px;
   object-fit: contain;
   cursor: pointer;
   z-index: 20;
@@ -94,12 +94,12 @@
 
 .bot-disc {
   position: absolute;
-  top: 20px;
+  top: 33px;
   right: 15px;
   width: 30px;
   height: 30px;
   object-fit: contain;
-  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.9));
   z-index: 15;
 }
 
