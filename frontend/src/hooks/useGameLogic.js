@@ -9,9 +9,13 @@ export const useGameLogic = () => {
   const makeMove = (position) => {
     // Logic to update board and player
     const nextBoard = getUpdatedBoard(board, position, currentPlayer, turnCounter);
-    setBoard(nextBoard);
-    setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1');
-    setTurnCounter(prev => prev + 1);
+    
+    // Only update state if board actually changed
+    if (nextBoard !== board) {
+      setBoard(nextBoard);
+      setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1');
+      setTurnCounter(prev => prev + 1);
+    }
   };
 
   return { board, currentPlayer, makeMove };

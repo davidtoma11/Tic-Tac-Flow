@@ -1,0 +1,190 @@
+.industrial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  /* Dark Slate Stone Texture */
+  background: 
+    radial-gradient(circle at 50% 50%, #151518 0%, #08080a 100%),
+    url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.08"/></svg>');
+  padding: 60px 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background "Runic" Decorations */
+.runic-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  font-family: serif;
+  font-size: 15rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.runic-bg span {
+  transform: rotate(-15deg);
+  letter-spacing: -20px;
+  user-select: none;
+}
+
+/* Hero Decorative Asset */
+.hero-deco {
+  position: absolute;
+  right: -5%;
+  bottom: 0;
+  height: 80%;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 1;
+  filter: contrast(1.2) sepia(0.5) hue-rotate(-20deg);
+}
+
+.industrial-header {
+  align-self: flex-start;
+  margin-left: 10%;
+  margin-bottom: 60px;
+  z-index: 2;
+  position: relative;
+}
+
+.metallic-text {
+  background: linear-gradient(135deg, #f0f0f0 0%, #b87333 50%, #8b5a2b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin: 0;
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.8));
+}
+
+.industrial-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 900px;
+  z-index: 2;
+  position: relative;
+}
+
+/* Asymmetric staggered cards */
+.asymmetric-card {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: linear-gradient(135deg, #2a2a2e 0%, #1a1a1c 50%, #121214 100%);
+  padding: 30px 45px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 4px solid #b87333;
+  box-shadow: 
+    -10px 10px 30px rgba(0,0,0,0.8),
+    0 0 20px rgba(184, 115, 51, 0.05);
+  position: relative;
+  width: 75%;
+}
+
+.asymmetric-card:nth-child(even) {
+  align-self: flex-end;
+  border-left: none;
+  border-right: 4px solid #b87333;
+  flex-direction: row-reverse;
+  text-align: right;
+  box-shadow: 
+    10px 10px 30px rgba(0,0,0,0.8),
+    0 0 20px rgba(184, 115, 51, 0.05);
+}
+
+/* Vivid copper/orange glow */
+.asymmetric-card:hover {
+  transform: scale(1.02) translateX(10px);
+  background: linear-gradient(135deg, #323236 0%, #202022 50%, #1a1a1c 100%);
+  box-shadow: 
+    -15px 15px 40px rgba(0,0,0,0.9),
+    0 0 30px rgba(184, 115, 51, 0.2);
+}
+
+.asymmetric-card:nth-child(even):hover {
+  transform: scale(1.02) translateX(-10px);
+}
+
+/* Mechanical Gear Decorations via CSS */
+.gear-deco {
+  width: 60px;
+  height: 60px;
+  background: #b87333;
+  clip-path: polygon(
+    50% 0%, 65% 10%, 90% 10%, 100% 35%, 90% 50%, 100% 65%, 90% 90%, 65% 90%, 50% 100%, 35% 90%, 10% 90%, 0% 65%, 10% 50%, 0% 35%, 10% 10%, 35% 10%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(184, 115, 51, 0.4);
+}
+
+.gear-inner {
+  width: 30px;
+  height: 30px;
+  background: #1a1a1c;
+  border-radius: 50%;
+  border: 2px solid #8b5a2b;
+}
+
+.card-info h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 2.2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+}
+
+.card-subtitle {
+  color: #b87333;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-top: 5px;
+}
+
+.industrial-back {
+  margin-top: 80px;
+  color: #8b5a2b;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  z-index: 2;
+}
+
+.industrial-back:hover {
+  color: #b87333;
+  border-bottom: 2px solid #b87333;
+  letter-spacing: 6px;
+}
+
+/* Vivid highlights for specific modes */
+.diff-easy { border-left-color: #555; }
+.diff-medium { border-left-color: #b87333; }
+.diff-hard { border-left-color: #e6e8fa; }
+.asymmetric-card:nth-child(even).diff-easy { border-right-color: #555; }
+.asymmetric-card:nth-child(even).diff-medium { border-right-color: #b87333; }
+.asymmetric-card:nth-child(even).diff-hard { border-right-color: #e6e8fa; }

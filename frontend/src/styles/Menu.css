@@ -1,0 +1,100 @@
+.menu {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main-title {
+  width: 70%;
+  margin-top: 50px;
+  flex-shrink: 0;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin-top: auto;
+  margin-bottom: 80px;
+}
+
+.game-card {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  display: block;
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.solo-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 20px 30px;
+  box-sizing: border-box;
+}
+
+.bots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.bot-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bot-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: auto;
+}
+
+.back-button img {
+  width: 60px;
+  height: 60px;
+}
+
+.duel-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
