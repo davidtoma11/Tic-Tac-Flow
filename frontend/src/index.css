@@ -1,48 +1,54 @@
-:root {
-  --bg: #000;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 }
 
-html {
-  height: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
+/* Stil de bază pentru telefon (full-screen, fără margini) */
 body {
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Fundal negru pe mobil pentru a nu se vedea margini */
   margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
-  background: var(--bg);
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--bg);
+.phone-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
 }
 
-/* Desktop: phone shape with black margins */
-@media (min-width: 450px) {
-  #root {
-    background: #000;
+/* Stiluri pentru Desktop (simulare dimensiune telefon pe fundal crem) */
+@media (min-width: 769px) {
+  body {
+    background-color: #f5e6ca; /* Fundal crem pe desktop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
-  .first-page {
-    width: 390px !important;
-    height: 844px !important;
-    border-radius: 40px;
-    overflow: hidden;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+
+  .phone-container {
+    width: 375px;
+    height: 667px;
+    /* Gradient negru în partea de jos până la sfertul ecranului (25%) */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 25%);
   }
+}
+
+/* Stiluri pentru carousel bot */
+.bot-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.bot-slider {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.slider-dot:hover {
+  opacity: 1 !important;
 }

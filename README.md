@@ -31,7 +31,7 @@ The project follows a decoupled architecture, separating UI rendering from game 
 ## Detailed Folder Structure
 ```text
 Tic-Tac-Flow/
-├── frontend/                     
+├── frontend/                    
 │   ├── src/
 │   │   ├── components/           # UI Modularization (Board, Disc, Layout, Menu)
 │   │   ├── hooks/                # Custom React hooks (Game State, Networking)

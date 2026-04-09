@@ -1,17 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import SoloMode from './pages/SoloMode';
-import './App.css';
+import { useState } from 'react';
+import Home from './components/Home';
+import BotSelection from './components/BotSelection';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const navigateToBotSelection = () => {
+    setCurrentPage('bot-selection');
+  };
+
+  const navigateToHome = () => {
+    setCurrentPage('home');
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/solo" element={<SoloMode />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    <div className="phone-container">
+      {currentPage === 'home' && <Home onSoloClick={navigateToBotSelection} />}
+      {currentPage === 'bot-selection' && <BotSelection onBackClick={navigateToHome} />}
+    </div>
+  )
 }
 
-export default App;
+export default App
