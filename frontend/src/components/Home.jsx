@@ -5,7 +5,7 @@ import mainTitle from '../assets/tmainTitle.png';
 import soloCard from '../assets/soloModeCard.png';
 import duelCard from '../assets/duelModeCard.png';
 
-const Home = ({ onSoloClick }) => {
+const Home = ({ onSoloClick, onDuelClick }) => {
   return (
     <div style={{ 
       position: 'relative',
@@ -58,6 +58,7 @@ const Home = ({ onSoloClick }) => {
           whileHover={{ scale: 1.1 }} 
           whileTap={{ scale: 0.95 }}
           style={{ width: '48%', cursor: 'pointer' }}
+          onClick={onDuelClick}
         />
       </div>
     </div>
