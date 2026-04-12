@@ -10,7 +10,7 @@ const duelModes = [
   { id: 2, name: 'Online', difficulty: 'Private Rooms', description: 'Challenge players from around the world', image: onlineModeCard },
 ];
 
-const DuelSelection = ({ onBackClick }) => {
+const DuelSelection = ({ onBackClick, onPlayClick }) => {
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -163,6 +163,7 @@ const DuelSelection = ({ onBackClick }) => {
             <img 
               src={playButton} 
               alt="Play"
+              onClick={onPlayClick}
               style={{ 
                 position: 'absolute',
                 bottom: '5%',

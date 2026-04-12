@@ -26,7 +26,7 @@ const botCards = [
   { id: 6, name: 'Toby', difficulty: 'Himself', description: 'Wishes you the best of luck', image: TobyCard, disc: TobyDisc },
 ];
 
-const BotSelection = ({ onBackClick }) => {
+const BotSelection = ({ onBackClick, onPlayClick }) => {
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -193,6 +193,7 @@ const BotSelection = ({ onBackClick }) => {
             <img 
               src={playButton} 
               alt="Play"
+              onClick={onPlayClick}
               style={{ 
                 position: 'absolute',
                 bottom: '5%',

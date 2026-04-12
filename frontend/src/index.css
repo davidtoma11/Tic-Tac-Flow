@@ -1,3 +1,8 @@
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -51,4 +56,17 @@ body {
 
 .slider-dot:hover {
   opacity: 1 !important;
+}
+
+@media (max-width: 400px) {
+  .player-x, .player-o {
+    font-size: 1.4rem;
+  }
+  .score-x, .score-o {
+    font-size: 1.2rem;
+  }
+  .scoreboard-container {
+    padding: 10px 20px;
+    gap: 10px;
+  }
 }
