@@ -298,7 +298,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  paddingTop: 5,
+                  paddingTop: 2,
                   transition: 'all 0.3s ease'
                 }}
               >
@@ -308,8 +308,8 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
                     alt={board[i]} 
                     className={`disc-pop ${isOldest ? 'disc-exit-warning' : ''}`}
                     style={{ 
-                      width: '60%', 
-                      height: '60%', 
+                      width: '90%', 
+                      height: '90%', 
                       objectFit: 'contain',
                       filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5))'
                     }} 
@@ -330,7 +330,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         display: 'flex',
         alignItems: 'center',
         gap: 6,
-        opacity: 0.8
+        opacity: 0.6
       }}>
         <div style={{ width: 20, height: 2, background: 'linear-gradient(to right, transparent, #ffd700, #fff)', borderRadius: 2 }} />
         <span style={{
