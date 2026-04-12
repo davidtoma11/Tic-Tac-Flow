@@ -1,53 +1,85 @@
-# Tic-Tac-Flow: The Dynamic Strategy Game
+# <img src="frontend/public/picLogo.png" width="40" height="40" /> Tic-Tac-Flow
 
-Tic-Tac-Flow is an advanced reimagining of the classic Tic-Tac-Toe concept, engineered for competitive and strategic depth. By introducing a First-In-First-Out (FIFO) mechanics, the game board remains a constantly evolving state-space, forcing players to account for the chronological persistence of their pieces.
+Tic-Tac-Flow is a high-performance, strategic reimagining of the traditional Tic-Tac-Toe framework. Developed with a sophisticated "Sci-Fi Lux" aesthetic, the application introduces the proprietary Flow Mechanic—a dynamic system where the board state is continuous, necessitating advanced tactical foresight.
 
-## Core Gameplay Mechanics
-The fundamental constraint of Tic-Tac-Flow is the limited spatial capacity of the board:
-*   **Capacity Limit:** The board can hold a maximum of 6 pieces simultaneously.
-*   **The FIFO Flow:** Upon placing a 7th piece, the oldest piece currently on the board is automatically removed. This ensures that the game board is never fully static and encourages high-level predictive gameplay.
+**Note on Design:** All visual assets, UI/UX components, and branding elements were custom-architected and designed in **Figma** specifically for this project to ensure a unique, premium user experience.
 
-## Game Modes
-The application supports multiple engagement vectors:
+---
 
-### Solo Mode
-*   **AI Engine:** Players compete against a dedicated backend-side AI.
-*   **Difficulty Levels:** Three tiered difficulty settings, governed by the backend engine.
+## Technical Stack
 
-### Duel Mode
-*   **Local PvP:** Hot-seat multiplayer on a single device.
-*   **Online PvP:** Real-time multiplayer facilitated by a WebSocket server.
-*   **Lobby System:** Includes Create/Join Room functionality for private matches.
-
-## System Architecture and Tech Stack
-The project follows a decoupled architecture, separating UI rendering from game state logic and AI computation.
-
-| Layer | Technologies | Role |
+| Category | Technology | Logo |
 | :--- | :--- | :--- |
-| **Frontend** | [React], [Vite], [Framer Motion] | Responsive UI, client-side state management |
-| **Backend** | [FastAPI], [Python], [WebSockets] | Game server, rule validation, AI processing |
-| **Communication** | [WebSockets] | Low-latency state synchronization |
+| **Frontend** | React 18 | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" width="25" height="25" /> |
+| **Build Tool** | Vite | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vitejs/vitejs-original.svg" width="25" height="25" /> |
+| **Animation** | Framer Motion | <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/framer.svg" width="25" height="25" /> |
+| **Styling** | CSS3 | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="25" height="25" /> |
+| **Backend** | FastAPI | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg" width="25" height="25" /> |
+| **Design** | Figma | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg" width="25" height="25" /> |
 
-## Detailed Folder Structure
-```text
-Tic-Tac-Flow/
-├── frontend/                    
-│   ├── src/
-│   │   ├── components/           # UI Modularization (Board, Disc, Layout, Menu)
-│   │   ├── hooks/                # Custom React hooks (Game State, Networking)
-│   │   └── logic/                # Frontend-side game rules validation
-│   └── package.json              # Frontend dependencies
-├── backend/                      
-│   ├── app/
-│   │   ├── main.py               # Application entry point
-│   │   ├── sockets.py            # WebSocket event handling
-│   │   └── game_engine.py        # Authoritative game logic and AI
-│   └── requirements.txt          # Backend dependencies
-└── ...
-```
+---
 
-## Setup & Deployment
-1.  **Backend**: Navigate to `backend/`, install requirements via `pip`, and run the FastAPI server (e.g., `uvicorn app.main:app`).
-2.  **Frontend**: Navigate to `frontend/`, install dependencies via `npm install`, and execute `npm run dev`.
+## Core Architecture and Mechanics
 
-*Built for portfolio purposes.*
+### The Flow Mechanic
+Traditional grid-based games often reach a static terminal state. Tic-Tac-Flow resolves this through a continuous displacement system:
+*   **Board Capacity:** The operational environment supports a maximum of six active units.
+*   **Chronological Displacement:** Placement of a seventh unit triggers the immediate removal of the oldest unit on the grid.
+*   **Visual Indicators:** Units approaching expiration utilize localized opacity transitions to signal imminent state changes.
+
+### Interface Excellence
+*   **Custom Figma Design:** Every interface element, from the glassmorphism grid to the metallic disc textures, was handcrafted in Figma to establish a cohesive high-end identity.
+*   **Modular Component Design:** Optimized React components ensuring high-frequency state updates without performance degradation.
+*   **Premium Visual Assets:** A curated gallery of high-resolution textures including metallic, matte, and luminescence-based finishes.
+
+---
+
+## Artificial Intelligence Registry
+
+The Solo Mode features six distinct AI entities, each governed by specialized decision-making algorithms:
+
+| Entity | Classification | Strategic Archetype | Logic Implementation |
+| :--- | :--- | :--- | :--- |
+| **Austin** | Novice | *The Learner* | Stochastic move selection based on available grid indices. |
+| **Fabio** | Inedit | *The Stylist* | Weighted heuristic favoring geometric symmetry over direct optimization. |
+| **Mira** | Adaptive | *The Mirror* | Central symmetry replication with dynamic threat response. |
+| **Anisia** | Advanced | *The Defender* | High-priority blocking logic integrated with Flow-awareness. |
+| **Mark** | Master | *The Architect* | Deep-search Minimax algorithm for calculated positional dominance. |
+| **Toby** | Himself | *The Grandmaster* | **Flow-Aware Minimax** utilizing alpha-beta pruning and future-state removal simulation. |
+
+---
+
+## Operational Modes
+
+### Current Implementation (Client-Side Authoritative)
+*   **Local PvP:** Localized multiplayer support with independent asset customization for both participants.
+*   **Solo Engagement:** Complete integration with the six-tier AI registry and bot-specific identifiers.
+*   **Asset Gallery:** Access to twelve distinct high-resolution unit textures.
+
+### Development Roadmap (Server-Side Integration)
+The current architecture is prepared for the deployment of the following features:
+*   **Synchronized Online PvP:** Real-time state synchronization via WebSocket protocols.
+*   **Competitive Ranking:** Global leaderboards for high-tier difficulty completions.
+*   **Cloud Persistence:** User profiles with synchronized statistics and unlocked aesthetic assets.
+
+---
+
+## Installation and Deployment
+
+1.  **Repository Initialization:** Clone the project to local environment.
+2.  **Frontend Deployment:**
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
+    ```
+3.  **Backend Initialization (Technical Preview):**
+    ```bash
+    cd backend
+    pip install -r requirements.txt
+    uvicorn app.main:app --reload
+    ```
+
+---
+
+*Engineered for strategic depth and visual precision. Designed in Figma.*
