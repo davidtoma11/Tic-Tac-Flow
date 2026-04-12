@@ -1,6 +1,73 @@
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes exitFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.disc-pop {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.disc-exit-warning {
+  animation: exitFade 1s infinite ease-in-out;
+}
+
+@keyframes winningGlow {
+  0%, 100% { 
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: inset 0 0 35px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.6);
+    border-color: #ffd700;
+    transform: scale(1.05);
+  }
+}
+
+.winning-square {
+  animation: winningGlow 0.8s infinite ease-in-out !important;
+  z-index: 10;
+  border: 1px solid #ffd700 !important;
+}
+
+* {
+
+.btn-motion {
+  transition: transform 0.1s ease, filter 0.1s ease;
+  cursor: pointer;
+}
+
+.btn-motion:hover {
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.btn-motion:active {
+  transform: scale(0.92);
+  filter: brightness(0.9);
+}
+
+@keyframes winningGlow {
+  0%, 100% { 
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: inset 0 0 35px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.6);
+    border-color: #ffd700;
+    transform: scale(1.05);
+  }
+}
+
+.winning-square {
+  animation: winningGlow 0.8s infinite ease-in-out !important;
+  z-index: 10;
+  border: 1px solid #ffd700 !important;
 }
 
 * {
@@ -69,4 +136,5 @@ body {
     padding: 10px 20px;
     gap: 10px;
   }
+}
 }

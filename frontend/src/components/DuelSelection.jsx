@@ -149,13 +149,13 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
               src={backButton} 
               alt="Back"
               onClick={onBackClick}
+              className="btn-motion"
               style={{ 
                 position: 'absolute',
                 top: '3%',
                 left: '8%',
                 width: '23%',
                 maxWidth: '145px',
-                cursor: 'pointer'
               }}
             />
 
@@ -163,14 +163,14 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
             <img 
               src={playButton} 
               alt="Play"
-              onClick={onPlayClick}
+              onClick={() => onPlayClick(mode.name)}
+              className="btn-motion"
               style={{ 
                 position: 'absolute',
                 bottom: '5%',
                 right: '8%',
                 width: '35%',
                 maxWidth: '200px',
-                cursor: 'pointer'
               }}
             />
           </div>

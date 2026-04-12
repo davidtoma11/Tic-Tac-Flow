@@ -174,35 +174,36 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
                 cursor: 'pointer'
               }}
             />
+{/* Back button in stanga sus - pe card */}
+<img 
+  src={backButton} 
+  alt="Back"
+  onClick={onBackClick}
+  className="btn-motion"
+  style={{ 
+    position: 'absolute',
+    top: '3%',
+    left: '8%',
+    width: '23%',
+    maxWidth: '145px',
+  }}
+/>
+...
+{/* Buton play in dreapta jos - mult mai mare */}
+<img 
+  src={playButton} 
+  alt="Play"
+  onClick={() => onPlayClick(bot)}
+  className="btn-motion"
+  style={{ 
+    position: 'absolute',
+    bottom: '5%',
+    right: '8%',
+    width: '35%',
+    maxWidth: '200px',
+  }}
+/>
 
-            {/* Disc in dreapta sus */}
-            <img 
-              src={bot.disc} 
-              alt={`${bot.name} Disc`}
-              style={{ 
-                position: 'absolute',
-                top: '5%',
-                right: '8%',
-                width: '10%',
-                maxWidth: '45px',
-                objectFit: 'contain'
-              }}
-            />
-
-            {/* Buton play in dreapta jos - mult mai mare */}
-            <img 
-              src={playButton} 
-              alt="Play"
-              onClick={onPlayClick}
-              style={{ 
-                position: 'absolute',
-                bottom: '5%',
-                right: '8%',
-                width: '35%',
-                maxWidth: '200px',
-                cursor: 'pointer'
-              }}
-            />
 
           </div>
         ))}
