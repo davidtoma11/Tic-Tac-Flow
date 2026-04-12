@@ -7,20 +7,21 @@ import discBlue from '../assets/discs/blue.png';
 import homeButton from '../assets/homeButton.png';
 import resetButton from '../assets/resetButton.png';
 import boardImg from '../assets/board.png';
+import { getBotDecision } from '../utils/bots';
 
 const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onScoreReset, customDiscs }) => {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [moveHistory, setMoveHistory] = useState([]); // Array of indices in order of placement
+  const [moveHistory, setMoveHistory] = useState([]); // Track move sequence
   const [currentPlayer, setCurrentPlayer] = useState('red');
   const [winner, setWinner] = useState(null);
   const [winningLine, setWinningLine] = useState(null);
   const [isTie, setIsTie] = useState(false);
 
-  // Determine discs to use
+  // Resolve active assets
   const p1Disc = customDiscs?.p1 || discRed;
   const p2Disc = mode === 'Solo' && selectedBot ? selectedBot.disc : (customDiscs?.p2 || discBlue);
 
-  // Auto-reset when game ends (new round, keep scores)
+  // Round reset: persistence enabled
   useEffect(() => {
     if (winner || isTie) {
       const timer = setTimeout(() => {
@@ -30,7 +31,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         setWinner(null);
         setWinningLine(null);
         setIsTie(false);
-      }, 3000); // 3 seconds to show the result and winning animation
+      }, 3000); // Victory display duration
       return () => clearTimeout(timer);
     }
   }, [winner, isTie]);
@@ -39,7 +40,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
     if (mode === 'Solo' && currentPlayer === 'blue' && !winner && !isTie) {
       const timer = setTimeout(() => {
         makeBotMove();
-      }, 800);
+      }, 800); // Bot latency for natural feel
       return () => clearTimeout(timer);
     }
   }, [currentPlayer, winner, isTie]);
@@ -48,7 +49,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
     let newBoard = [...board];
     let newHistory = [...moveHistory];
 
-    // Check if we need to remove the oldest piece (Flow logic: max 6 pieces)
+    // Flow logic: enforce 6-piece limit
     if (newHistory.length >= 6) {
       const oldestIndex = newHistory.shift();
       newBoard[oldestIndex] = null;
@@ -66,6 +67,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
       setWinningLine(result.line);
       onScoreUpdate(result.winner);
     } else if (newBoard.every(square => square !== null) && newHistory.length < 6) {
+      // Draw detection (fallback)
       setIsTie(true);
     } else {
       setCurrentPlayer(player === 'red' ? 'blue' : 'red');
@@ -73,19 +75,17 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
   };
 
   const makeBotMove = () => {
-    const availableMoves = board.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
-    if (availableMoves.length === 0) return;
-
-    // Simple AI: random move
-    const randomIdx = availableMoves[Math.floor(Math.random() * availableMoves.length)];
-    updateGameState(randomIdx, 'blue');
+    const moveIndex = getBotDecision(selectedBot.name, board, moveHistory);
+    if (moveIndex !== null) {
+      updateGameState(moveIndex, 'blue');
+    }
   };
 
   const checkWinner = (squares) => {
     const lines = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
-      [0, 4, 8], [2, 4, 6]             // diagonals
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Win patterns
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
     ];
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
@@ -129,7 +129,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
       backgroundPosition: 'center'
     }}>
 
-      {/* Overlay */}
+      {/* Scene mask */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -139,7 +139,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         backgroundColor: 'rgba(0, 0, 0, 0.8)'
       }} />
 
-      {/* Top - Title & Mode */}
+      {/* Header section */}
       <div style={{
         position: 'absolute',
         top: 40,
@@ -150,7 +150,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
       }}>
         <img src={mainTitle} alt="Tic-Tac-Flow" style={{ width: '80%' }} />
 
-        {/* Mode text */}
+        {/* Session meta */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 25, height: 2, background: 'linear-gradient(to right, transparent, #ffd700, #fff)', borderRadius: 2 }} />
           <span style={{ fontSize: '0.7rem', fontFamily: 'Arial', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>{mode} Mode</span>
@@ -158,7 +158,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         </div>
       </div>
 
-      {/* Scoreboard */}
+      {/* Stats display */}
       <div style={{
         position: 'absolute',
         top: '18%',
@@ -189,7 +189,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         </div>
       </div>
 
-      {/* Board Container */}
+      {/* Game arena */}
       <div style={{
         position: 'absolute',
         top: '30%',
@@ -198,7 +198,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         width: '93%',
         aspectRatio: '1/1'
       }}>
-        {/* Board Image */}
+        {/* Visual grid base */}
         <img
           src={boardImg}
           alt="Board"
@@ -212,7 +212,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
           }}
         />
 
-        {/* Glowing lines */}
+        {/* Arena accents */}
         <div style={{
           position: 'absolute',
           top: '36%',
@@ -255,17 +255,17 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
           opacity: 0.4
         }} />
 
-        {/* 9 Placeholder discs - on the board surface */}
+        {/* Interaction slots */}
         {[
-          { col: '20%', row: '24%' },  // top-left
-          { col: '50%', row: '24%' },  // top-center
-          { col: '80%', row: '24%' }, // top-right
-          { col: '20%', row: '49%' }, // middle-left
-          { col: '50%', row: '49%' }, // center
-          { col: '80%', row: '49%' }, // middle-right
-          { col: '20%', row: '74%' }, // bottom-left
-          { col: '50%', row: '74%' }, // bottom-center
-          { col: '80%', row: '74%' }  // bottom-right
+          { col: '20%', row: '24%' },
+          { col: '50%', row: '24%' },
+          { col: '80%', row: '24%' },
+          { col: '20%', row: '49%' },
+          { col: '50%', row: '49%' },
+          { col: '80%', row: '49%' },
+          { col: '20%', row: '74%' },
+          { col: '50%', row: '74%' },
+          { col: '80%', row: '74%' }
         ].map((pos, i) => {
           const isOldest = !winner && moveHistory.length === 6 && moveHistory[0] === i;
           const isWinningSquare = winningLine?.includes(i);
@@ -321,7 +321,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         })}
       </div>
 
-      {/* Turn or Game Result indicator */}
+      {/* Status bar */}
       <div style={{
         position: 'absolute',
         bottom: '23%',
@@ -357,7 +357,7 @@ const GameBoard = ({ mode, onHomeClick, scores, onScoreUpdate, selectedBot, onSc
         <div style={{ width: 20, height: 2, background: 'linear-gradient(to left, transparent, #ffd700, #fff)', borderRadius: 2 }} />
       </div>
 
-      {/* Buttons */}
+      {/* Controls */}
       <div style={{
         position: 'absolute',
         bottom: 75,

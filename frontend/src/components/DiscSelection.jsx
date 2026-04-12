@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import background from '../assets/secondPageBG.png';
 import backButton from '../assets/backButton.png';
 
-// Import discs
+// Assets: Disc collection
 import blueDisc from '../assets/discs/blue.png';
 import bronzeDisc from '../assets/discs/bronze.png';
 import goldDisc from '../assets/discs/gold.png';
@@ -31,19 +31,28 @@ const ALL_DISCS = [
   { id: 'turquoise', img: turquoiseDisc, name: 'Oceanic Teal' },
 ];
 
-const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
+const DiscSelection = ({ mode, onSelectionComplete, onBackClick }) => {
   const [player1Disc, setPlayer1Disc] = useState(null);
-  const [currentStep, setCurrentStep] = useState(1); // 1 for P1, 2 for P2
+  const [currentStep, setCurrentStep] = useState(1); // Step tracker: P1=1, P2=2
 
   const handleDiscSelect = (disc) => {
-    if (currentStep === 1) {
+    if (mode === 'Solo') {
+      // Solo: p1 selects, p2 inherited from bot
       setPlayer1Disc(disc);
-      setCurrentStep(2);
-    } else {
-      // Wait a bit to show selection before completing
       setTimeout(() => {
-        onSelectionComplete(player1Disc, disc);
+        onSelectionComplete(disc, null);
       }, 300);
+    } else {
+      // Duel: sequential selection
+      if (currentStep === 1) {
+        setPlayer1Disc(disc);
+        setCurrentStep(2);
+      } else {
+        // Delay for visual confirmation
+        setTimeout(() => {
+          onSelectionComplete(player1Disc, disc);
+        }, 300);
+      }
     }
   };
 
@@ -59,7 +68,7 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
       flexDirection: 'column',
       alignItems: 'center',
     }}>
-      {/* Dark Overlay */}
+      {/* Scene overlay */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -70,7 +79,7 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
         zIndex: 0
       }} />
 
-      {/* Dynamic Player Indicator - Minimalist */}
+      {/* Active player status */}
       <div style={{
         zIndex: 1,
         marginTop: 60,
@@ -103,7 +112,7 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
         }} />
       </div>
 
-      {/* Premium Gallery - 2 per row */}
+      {/* Selection grid */}
       <div style={{
         zIndex: 1,
         width: '100%',
@@ -145,11 +154,11 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
                 transition: 'all 0.3s ease'
               }}
             >
-              {/* Decorative Corner Lines */}
+              {/* UI accents */}
               <div style={{ position: 'absolute', top: 10, left: 10, width: 10, height: 10, borderTop: '1px solid rgba(255,255,255,0.2)', borderLeft: '1px solid rgba(255,255,255,0.2)' }} />
               <div style={{ position: 'absolute', bottom: 10, right: 10, width: 10, height: 10, borderBottom: '1px solid rgba(255,255,255,0.2)', borderRight: '1px solid rgba(255,255,255,0.2)' }} />
 
-              {/* Disc Image */}
+              {/* Disc preview */}
               <div style={{
                 width: '75%',
                 aspectRatio: '1/1',
@@ -169,7 +178,7 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
                 />
               </div>
 
-              {/* Disc Name - Premium detail */}
+              {/* Meta info */}
               <div style={{
                 marginTop: 15,
                 fontSize: '0.6rem',
@@ -201,7 +210,7 @@ const DiscSelection = ({ onSelectionComplete, onBackClick }) => {
         })}
       </div>
 
-      {/* Back Button Container */}
+      {/* Navigation Footer */}
       <div style={{
         position: 'absolute',
         bottom: 0,

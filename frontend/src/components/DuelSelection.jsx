@@ -54,7 +54,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      {/* Overlay întunecat */}
+      {/* Dark overlay */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -65,7 +65,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
         zIndex: 0
       }} />
 
-      {/* Carousel cu scroll snap */}
+      {/* Snap-scroll carousel */}
       <div 
         className="bot-slider"
         ref={sliderRef}
@@ -95,7 +95,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
               alignItems: 'center'
             }}
           >
-            {/* Imaginea cardului */}
+            {/* Mode card image */}
             <img 
               src={mode.image} 
               alt={mode.name}
@@ -106,7 +106,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
               }} 
             />
 
-            {/* Info: nume, descriere */}
+            {/* Mode details */}
             <div style={{
               position: 'absolute',
               zIndex: 1,
@@ -144,7 +144,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
               }}>{mode.description}</div>
             </div>
 
-            {/* Back button in stanga sus - pe card */}
+            {/* Top-left back button */}
             <img 
               src={backButton} 
               alt="Back"
@@ -159,7 +159,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
               }}
             />
 
-            {/* Buton play in dreapta jos */}
+            {/* Bottom-right play button */}
             <img 
               src={playButton} 
               alt="Play"
@@ -177,7 +177,7 @@ const DuelSelection = ({ onBackClick, onPlayClick }) => {
         ))}
       </div>
 
-      {/* Indicatori (butoane) - cu highlight pentru cel activ */}
+      {/* Slide navigation indicators */}
       <div style={{ 
         display: 'flex', 
         gap: '12px', 

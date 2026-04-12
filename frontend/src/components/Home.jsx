@@ -20,7 +20,7 @@ const Home = ({ onSoloClick, onDuelClick }) => {
       backgroundPosition: 'center',
       padding: '40px 20px'
     }}>
-      {/* Element gradient pentru estompare jos */}
+      {/* Bottom fade gradient */}
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -32,10 +32,10 @@ const Home = ({ onSoloClick, onDuelClick }) => {
         zIndex: 0
       }} />
 
-      {/* Titlu */}
+      {/* Main header */}
       <img src={mainTitle} alt="Tic-Tac-Flow Title" style={{ width: '85%', marginTop: '20px', zIndex: 1 }} />
 
-      {/* Container butoane/carduri */}
+      {/* Mode selection cards */}
       <div style={{ 
         display: 'flex', 
         justifyContent: 'center', 

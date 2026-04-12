@@ -70,7 +70,7 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      {/* Overlay întunecat */}
+      {/* Dark overlay */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -81,7 +81,7 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
         zIndex: 0
       }} />
 
-      {/* Carousel cu scroll snap */}
+      {/* Snap-scroll carousel */}
       <div 
         className="bot-slider"
         ref={sliderRef}
@@ -111,7 +111,7 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
               alignItems: 'center'
             }}
           >
-            {/* Imaginea cardului bot */}
+            {/* Bot card image */}
             <img 
               src={bot.image} 
               alt={bot.name}
@@ -122,7 +122,7 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
               }} 
             />
 
-            {/* Info bot: nume, dificultate, descriere */}
+            {/* Bot profile info */}
             <div style={{
               position: 'absolute',
               zIndex: 1,
@@ -160,56 +160,55 @@ const BotSelection = ({ onBackClick, onPlayClick }) => {
               }}>{bot.description}</div>
             </div>
 
-            {/* Back button in stanga sus - pe card */}
+            {/* Top-left back button */}
             <img 
               src={backButton} 
               alt="Back"
               onClick={onBackClick}
+              className="btn-motion"
               style={{ 
                 position: 'absolute',
                 top: '3%',
                 left: '8%',
                 width: '23%',
                 maxWidth: '145px',
-                cursor: 'pointer'
               }}
             />
-{/* Back button in stanga sus - pe card */}
-<img 
-  src={backButton} 
-  alt="Back"
-  onClick={onBackClick}
-  className="btn-motion"
-  style={{ 
-    position: 'absolute',
-    top: '3%',
-    left: '8%',
-    width: '23%',
-    maxWidth: '145px',
-  }}
-/>
-...
-{/* Buton play in dreapta jos - mult mai mare */}
-<img 
-  src={playButton} 
-  alt="Play"
-  onClick={() => onPlayClick(bot)}
-  className="btn-motion"
-  style={{ 
-    position: 'absolute',
-    bottom: '5%',
-    right: '8%',
-    width: '35%',
-    maxWidth: '200px',
-  }}
-/>
 
+            {/* Top-right bot disc */}
+            <img 
+              src={bot.disc} 
+              alt={`${bot.name} Disc`}
+              style={{ 
+                position: 'absolute',
+                top: '5%',
+                right: '8%',
+                width: '10%',
+                maxWidth: '45px',
+                objectFit: 'contain'
+              }}
+            />
+
+            {/* Bottom-right play button */}
+            <img 
+              src={playButton} 
+              alt="Play"
+              onClick={() => onPlayClick(bot)}
+              className="btn-motion"
+              style={{ 
+                position: 'absolute',
+                bottom: '5%',
+                right: '8%',
+                width: '35%',
+                maxWidth: '200px',
+              }}
+            />
 
           </div>
         ))}
       </div>
 
-      {/* Indicatori (butoane) - cu highlight pentru cel activ */}
+      {/* Slide navigation indicators */}
       <div style={{ 
         display: 'flex', 
         gap: '12px', 

@@ -20,7 +20,9 @@ function App() {
     setCurrentPage('duel-selection');
   };
 
-  const navigateToDiscSelection = () => {
+  const navigateToDiscSelection = (mode, bot = null) => {
+    setGameMode(mode);
+    setSelectedBot(bot);
     setCurrentPage('disc-selection');
   };
 
@@ -49,7 +51,12 @@ function App() {
   };
 
   const handleDiscSelectionComplete = (p1Disc, p2Disc) => {
-    navigateToGameBoard('Local', { p1: p1Disc.img, p2: p2Disc.img });
+    if (gameMode === 'Solo' && selectedBot) {
+      // Solo: assign bot disc to player 2
+      navigateToGameBoard('Solo', { p1: p1Disc.img, p2: selectedBot.disc }, selectedBot);
+    } else {
+      navigateToGameBoard('Local', { p1: p1Disc.img, p2: p2Disc.img });
+    }
   };
 
   return (
@@ -59,8 +66,8 @@ function App() {
       {currentPage === 'bot-selection' && (
         <BotSelection 
           onBackClick={navigateToHome} 
-          onPlayClick={() => {
-            console.log("Solo mode is coming soon!");
+          onPlayClick={(bot) => {
+            navigateToDiscSelection('Solo', bot);
           }} 
         />
       )}
@@ -70,7 +77,7 @@ function App() {
           onBackClick={navigateToHome} 
           onPlayClick={(modeName) => {
             if (modeName === 'Local') {
-              navigateToDiscSelection();
+              navigateToDiscSelection('Local');
             } else {
               console.log("Online mode is coming soon!");
             }
@@ -80,7 +87,8 @@ function App() {
 
       {currentPage === 'disc-selection' && (
         <DiscSelection 
-          onBackClick={navigateToDuelSelection}
+          mode={gameMode}
+          onBackClick={gameMode === 'Solo' ? navigateToBotSelection : navigateToDuelSelection}
           onSelectionComplete={handleDiscSelectionComplete}
         />
       )}

@@ -3,17 +3,10 @@
   70% { transform: scale(1.1); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
+
 @keyframes exitFade {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
-}
-
-.disc-pop {
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.disc-exit-warning {
-  animation: exitFade 1s infinite ease-in-out;
 }
 
 @keyframes winningGlow {
@@ -29,13 +22,19 @@
   }
 }
 
+.disc-pop {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.disc-exit-warning {
+  animation: exitFade 1s infinite ease-in-out;
+}
+
 .winning-square {
   animation: winningGlow 0.8s infinite ease-in-out !important;
   z-index: 10;
   border: 1px solid #ffd700 !important;
 }
-
-* {
 
 .btn-motion {
   transition: transform 0.1s ease, filter 0.1s ease;
@@ -51,35 +50,16 @@
   filter: brightness(0.9);
 }
 
-@keyframes winningGlow {
-  0%, 100% { 
-    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.3);
-    border-color: rgba(255, 215, 0, 0.4);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: inset 0 0 35px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.6);
-    border-color: #ffd700;
-    transform: scale(1.05);
-  }
-}
-
-.winning-square {
-  animation: winningGlow 0.8s infinite ease-in-out !important;
-  z-index: 10;
-  border: 1px solid #ffd700 !important;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Stil de bază pentru telefon (full-screen, fără margini) */
+/* Mobile: Full-screen container */
 body {
   font-family: Arial, sans-serif;
-  background-color: #000; /* Fundal negru pe mobil pentru a nu se vedea margini */
+  background-color: #000;
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -94,10 +74,10 @@ body {
   background-color: white;
 }
 
-/* Stiluri pentru Desktop (simulare dimensiune telefon pe fundal crem) */
+/* Desktop: Mobile viewport simulation */
 @media (min-width: 769px) {
   body {
-    background-color: #f5e6ca; /* Fundal crem pe desktop */
+    background-color: #f5e6ca;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,12 +86,11 @@ body {
   .phone-container {
     width: 375px;
     height: 667px;
-    /* Gradient negru în partea de jos până la sfertul ecranului (25%) */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 25%);
   }
 }
 
-/* Stiluri pentru carousel bot */
+/* Carousel layout overrides */
 .bot-slider::-webkit-scrollbar {
   display: none;
 }
@@ -136,5 +115,4 @@ body {
     padding: 10px 20px;
     gap: 10px;
   }
-}
 }
